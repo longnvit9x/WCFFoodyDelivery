@@ -1,0 +1,9 @@
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\Models.dll.config
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\Models.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\Models.pdb
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\EntityFramework.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\EntityFramework.xml
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\obj\Debug\Models.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Models\obj\Debug\Models.pdb

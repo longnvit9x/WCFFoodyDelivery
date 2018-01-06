@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FoodDeliveryModelStoreContainer" CdmEntityContainer="FoodDeliveryEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodSizes">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.FoodSize">
+        <MappingFragment StoreEntitySet="FoodSize">
+          <ScalarProperty Name="FoodSizeID" ColumnName="FoodSizeID" />
+          <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+          <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodTypes">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.FoodType">
+        <MappingFragment StoreEntitySet="FoodType">
+          <ScalarProperty Name="FoodTypeID" ColumnName="FoodTypeID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceDetails">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.InvoiceDetail">
+        <MappingFragment StoreEntitySet="InvoiceDetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="NumberFood" ColumnName="NumberFood" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoreImages">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.StoreImage">
+        <MappingFragment StoreEntitySet="StoreImage">
+          <ScalarProperty Name="StoreImageID" ColumnName="StoreImageID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoreSales">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.StoreSale">
+        <MappingFragment StoreEntitySet="StoreSale">
+          <ScalarProperty Name="StoreSaleID" ColumnName="StoreSaleID" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="StartSale" ColumnName="StartSale" />
+          <ScalarProperty Name="StopSale" ColumnName="StopSale" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CHECK_LOGIN" FunctionName="FoodDeliveryModel.Store.CHECK_LOGIN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.CHECK_LOGIN_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CHECK_USER_LOGIN" FunctionName="FoodDeliveryModel.Store.CHECK_USER_LOGIN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.CHECK_USER_LOGIN_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_CATEGORY_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_CATEGORY_BY_STOREID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_CATEGORY_BY_STOREID_Result">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_FOOD_BY_CATEGORYID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOOD_BY_CATEGORYID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOOD_BY_CATEGORYID_Result">
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_FOODSIZE_BY_FOODID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOODSIZE_BY_FOODID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOODSIZE_BY_FOODID_Result">
+          <ScalarProperty Name="FoodSizeID" ColumnName="FoodSizeID" />
+          <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+          <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_FOODTYPE_BY_FOODID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOODTYPE_BY_FOODID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOODTYPE_BY_FOODID_Result">
+          <ScalarProperty Name="FoodTypeID" ColumnName="FoodTypeID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_INVOICE_BY_CUSTOMERID" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICE_BY_CUSTOMERID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICE_BY_CUSTOMERID_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_INVOICE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICE_BY_STOREID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICE_BY_STOREID_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_INVOICEDETAIL_BY_INVOICEID" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICEDETAIL_BY_INVOICEID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICEDETAIL_BY_INVOICEID_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="NumberFood" ColumnName="NumberFood" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_STORE" FunctionName="FoodDeliveryModel.Store.GET_LIST_STORE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_STORE_Result">
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+          <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="Manner" ColumnName="Manner" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+          <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_STOREIMAGE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_STOREIMAGE_BY_STOREID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_STOREIMAGE_BY_STOREID_Result">
+          <ScalarProperty Name="StoreImageID" ColumnName="StoreImageID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_CUSTOMER_BY_CUSTOMERID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_CUSTOMER_BY_CUSTOMERID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_CUSTOMER_BY_CUSTOMERID_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_CUSTOMER_BY_USERNAME" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_CUSTOMER_BY_USERNAME">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_CUSTOMER_BY_USERNAME_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_FOOD_BY_FOODID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_FOOD_BY_FOODID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_FOOD_BY_FOODID_Result">
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_INVOICE_BY_INVOICEID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_INVOICE_BY_INVOICEID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_INVOICE_BY_INVOICEID_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_STORESALE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_STORESALE_BY_STOREID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_STORESALE_BY_STOREID_Result">
+          <ScalarProperty Name="StoreSaleID" ColumnName="StoreSaleID" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="StartSale" ColumnName="StartSale" />
+          <ScalarProperty Name="StopSale" ColumnName="StopSale" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERT_INVOICEDETAIL_TOSQL" FunctionName="FoodDeliveryModel.Store.INSERT_INVOICEDETAIL_TOSQL" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FoodDeliveryModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FoodDeliveryModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FoodDeliveryModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FoodDeliveryModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FoodDeliveryModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FoodDeliveryModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FoodDeliveryModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="UPDATE_CUSTOMER_TOSQL" FunctionName="FoodDeliveryModel.Store.UPDATE_CUSTOMER_TOSQL" />
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_STORE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_STORE_BY_STOREID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_STORE_BY_STOREID_Result1">
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+          <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="Manner" ColumnName="Manner" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+          <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_SALE_OPEN" FunctionName="FoodDeliveryModel.Store.GET_SALE_OPEN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_SALE_OPEN_Result">
+          <ScalarProperty Name="StoreSaleID" ColumnName="StoreSaleID" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="StartSale" ColumnName="StartSale" />
+          <ScalarProperty Name="StopSale" ColumnName="StopSale" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.Food">
+        <MappingFragment StoreEntitySet="Food">
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_FOOD_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOOD_BY_STOREID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOOD_BY_STOREID_Result">
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stores">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.Store">
+        <MappingFragment StoreEntitySet="Store">
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+          <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Manner" ColumnName="Manner" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+          <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="INSERT_CUSTOMER_TOSQL" FunctionName="FoodDeliveryModel.Store.INSERT_CUSTOMER_TOSQL" />
+    <FunctionImportMapping FunctionImportName="FIND_STORE" FunctionName="FoodDeliveryModel.Store.FIND_STORE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.FIND_STORE_Result">
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+          <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="Manner" ColumnName="Manner" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+          <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+          <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+          <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="StoreTypes">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.StoreType">
+        <MappingFragment StoreEntitySet="StoreType">
+          <ScalarProperty Name="TypeImage" ColumnName="TypeImage" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="FoodDeliveryModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="INSERT_INVOICE_TOSQL" FunctionName="FoodDeliveryModel.Store.INSERT_INVOICE_TOSQL" />
+    <FunctionImportMapping FunctionImportName="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LIST_INVOICE_BY_CUSTOMERID_ALL" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICE_BY_CUSTOMERID_ALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICE_BY_CUSTOMERID_ALL_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UPDATE_STATUS_INVOICE" FunctionName="FoodDeliveryModel.Store.UPDATE_STATUS_INVOICE" />
+  </EntityContainerMapping>
+</Mapping>

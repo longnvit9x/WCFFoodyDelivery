@@ -1,0 +1,2196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FoodDeliveryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StoreID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Mobile" Type="text" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Avatar" Type="nvarchar(max)" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileID" Type="int" />
+        </EntityType>
+        <EntityType Name="FileData">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="Data" Type="binary" MaxLength="7000" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileMimeType" Type="int" />
+          <Property Name="FileThumbnail" Type="binary" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FoodName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FoodImage" Type="nvarchar(max)" />
+          <Property Name="CategoryID" Type="uniqueidentifier" />
+          <Property Name="StoreID" Type="uniqueidentifier" />
+          <Property Name="FileID" Type="int" />
+        </EntityType>
+        <EntityType Name="FoodSize">
+          <Key>
+            <PropertyRef Name="FoodSizeID" />
+          </Key>
+          <Property Name="FoodSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SizeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceSize" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FoodID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="FoodType">
+          <Key>
+            <PropertyRef Name="FoodTypeID" />
+          </Key>
+          <Property Name="FoodTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceType" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FoodID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="DeliveryDate" Type="datetime" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressDelivery" Type="nvarchar" MaxLength="200" />
+          <Property Name="StoreID" Type="uniqueidentifier" />
+          <Property Name="Sale" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ShippingFee" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ServiceChange" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="InvoiceDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodID" Type="uniqueidentifier" />
+          <Property Name="NumberFood" Type="int" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceSize" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceType" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="PostImage">
+          <Key>
+            <PropertyRef Name="PostImageID" />
+          </Key>
+          <Property Name="PostImageID" Type="int" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="500" />
+          <Property Name="PostID" Type="int" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="NotablePosition" Type="int" />
+          <Property Name="NotablePrice" Type="int" />
+          <Property Name="NotableQuality" Type="int" />
+          <Property Name="NotableServe" Type="int" />
+          <Property Name="NotableSapce" Type="int" />
+          <Property Name="PostTime" Type="datetime" />
+          <Property Name="Like" Type="int" />
+          <Property Name="View" Type="int" />
+          <Property Name="StoreID" Type="uniqueidentifier" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="OpenDoor" Type="time" Precision="7" />
+          <Property Name="CloserDoor" Type="time" Precision="7" />
+          <Property Name="ServiceCharge" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ShippingFee" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Manner" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
+          <Property Name="StoreType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreBanner" Type="nvarchar(max)" />
+          <Property Name="Rating" Type="float" />
+          <Property Name="Evaluation" Type="int" />
+          <Property Name="ConditionShip" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StartDate" Type="int" />
+          <Property Name="EndDate" Type="int" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
+          <Property Name="FileID" Type="int" />
+        </EntityType>
+        <EntityType Name="StoreImage">
+          <Key>
+            <PropertyRef Name="StoreImageID" />
+          </Key>
+          <Property Name="StoreImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="StoreID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="StoreSale">
+          <Key>
+            <PropertyRef Name="StoreSaleID" />
+          </Key>
+          <Property Name="StoreSaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sale" Type="int" />
+          <Property Name="StartSale" Type="datetime" />
+          <Property Name="StopSale" Type="datetime" />
+          <Property Name="StoreID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="StoreType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeImage" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="FulllName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="text" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Category_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_File">
+          <End Role="FileData" Type="Self.FileData" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileData">
+              <PropertyRef Name="FileID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailCart_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailDirect_DirectCart">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DirectCart_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DirectCart_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodSize_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="FoodSize" Type="Self.FoodSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="FoodSize">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodType_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="FoodType" Type="Self.FoodType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="FoodType">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostImage_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+          <End Role="PostImage" Type="Self.PostImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostImage">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_File">
+          <End Role="FileData" Type="Self.FileData" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileData">
+              <PropertyRef Name="FileID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreImage_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="StoreImage" Type="Self.StoreImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StoreImage">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSale_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="StoreSale" Type="Self.StoreSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StoreSale">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CHECK_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CHECK_USER_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="FIND_STORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StoreType" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GET_LIST_CATEGORY_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_FOOD_BY_CATEGORYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_FOOD_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_FOODSIZE_BY_FOODID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_FOODTYPE_BY_FOODID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_INVOICE_BY_CUSTOMERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_INVOICE_BY_CUSTOMERID_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_INVOICE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_INVOICEDETAIL_BY_INVOICEID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LIST_STORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GET_LIST_STOREIMAGE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_CUSTOMER_BY_CUSTOMERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_CUSTOMER_BY_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_FOOD_BY_FOODID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_INVOICE_BY_INVOICEID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+          <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+          <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrderDate" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_STORE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_OBJECT_STORESALE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GET_SALE_OPEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="INSERT_CUSTOMER_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mobile" Type="text" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Avatar" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="INSERT_INVOICE_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sale" Type="decimal" Mode="In" />
+          <Parameter Name="ServiceChange" Type="decimal" Mode="In" />
+          <Parameter Name="ShippingFee" Type="decimal" Mode="In" />
+          <Parameter Name="TotalPrice" Type="decimal" Mode="In" />
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CustomerPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressDelivery" Type="nvarchar" Mode="In" />
+          <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+          <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="INSERT_INVOICEDETAIL_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumberFood" Type="int" Mode="In" />
+          <Parameter Name="Size" Type="nvarchar" Mode="In" />
+          <Parameter Name="PriceSize" Type="bigint" Mode="In" />
+          <Parameter Name="Type" Type="nvarchar" Mode="In" />
+          <Parameter Name="PriceType" Type="bigint" Mode="In" />
+          <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UPDATE_CUSTOMER_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mobile" Type="text" Mode="In" />
+          <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Avatar" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_STATUS_INVOICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="FoodDeliveryModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileData" EntityType="Self.FileData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodSize" EntityType="Self.FoodSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodType" EntityType="Self.FoodType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceDetail" EntityType="Self.InvoiceDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostImage" EntityType="Self.PostImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreImage" EntityType="Self.StoreImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreSale" EntityType="Self.StoreSale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreType" EntityType="Self.StoreType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Category_Store" Association="Self.FK_Category_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_File" Association="Self.FK_Customer_File">
+            <End Role="FileData" EntitySet="FileData" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailCart_Food" Association="Self.FK_DetailCart_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailDirect_DirectCart" Association="Self.FK_DetailDirect_DirectCart">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DirectCart_Customer" Association="Self.FK_DirectCart_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DirectCart_Store" Association="Self.FK_DirectCart_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Category" Association="Self.FK_Food_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodSize_Food" Association="Self.FK_FoodSize_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="FoodSize" EntitySet="FoodSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodType_Food" Association="Self.FK_FoodType_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="FoodType" EntitySet="FoodType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostImage_Posts" Association="Self.FK_PostImage_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="PostImage" EntitySet="PostImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Customer" Association="Self.FK_Posts_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Store" Association="Self.FK_Posts_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_Customer" Association="Self.FK_Store_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_File" Association="Self.FK_Store_File">
+            <End Role="FileData" EntitySet="FileData" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreImage_Store" Association="Self.FK_StoreImage_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreImage" EntitySet="StoreImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSale_Store" Association="Self.FK_StoreSale_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreSale" EntitySet="StoreSale" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoodDeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StoreID" Type="Guid" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Category_Store" FromRole="Category" ToRole="Store" />
+          <NavigationProperty Name="Foods" Relationship="Self.FK_Food_Category" FromRole="Category" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Guid" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileID" Type="Int32" />
+          <NavigationProperty Name="FileData" Relationship="Self.FK_Customer_File" FromRole="Customer" ToRole="FileData" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_DirectCart_Customer" FromRole="Customer" ToRole="Invoice" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Customer" FromRole="Customer" ToRole="Posts" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK_Store_Customer" FromRole="Customer" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="FileData">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="7000" FixedLength="true" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileMimeType" Type="Int32" />
+          <Property Name="FileThumbnail" Type="Binary" MaxLength="500" FixedLength="true" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_File" FromRole="FileData" ToRole="Customer" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK_Store_File" FromRole="FileData" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="Guid" Nullable="false" />
+          <Property Name="FoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FoodImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Guid" />
+          <Property Name="StoreID" Type="Guid" />
+          <Property Name="FileID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Food_Category" FromRole="Food" ToRole="Category" />
+          <NavigationProperty Name="InvoiceDetails" Relationship="Self.FK_DetailCart_Food" FromRole="Food" ToRole="InvoiceDetail" />
+          <NavigationProperty Name="FoodSizes" Relationship="Self.FK_FoodSize_Food" FromRole="Food" ToRole="FoodSize" />
+          <NavigationProperty Name="FoodTypes" Relationship="Self.FK_FoodType_Food" FromRole="Food" ToRole="FoodType" />
+        </EntityType>
+        <EntityType Name="FoodSize">
+          <Key>
+            <PropertyRef Name="FoodSizeID" />
+          </Key>
+          <Property Name="FoodSizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SizeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriceSize" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FoodID" Type="Guid" />
+          <NavigationProperty Name="Food" Relationship="Self.FK_FoodSize_Food" FromRole="FoodSize" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="FoodType">
+          <Key>
+            <PropertyRef Name="FoodTypeID" />
+          </Key>
+          <Property Name="FoodTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriceType" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FoodID" Type="Guid" />
+          <NavigationProperty Name="Food" Relationship="Self.FK_FoodType_Food" FromRole="FoodType" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Guid" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerID" Type="Guid" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressDelivery" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StoreID" Type="Guid" />
+          <Property Name="Sale" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ShippingFee" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ServiceChange" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_DirectCart_Customer" FromRole="Invoice" ToRole="Customer" />
+          <NavigationProperty Name="InvoiceDetails" Relationship="Self.FK_DetailDirect_DirectCart" FromRole="Invoice" ToRole="InvoiceDetail" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_DirectCart_Store" FromRole="Invoice" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="InvoiceDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodID" Type="Guid" />
+          <Property Name="NumberFood" Type="Int32" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriceSize" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriceType" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceID" Type="Guid" />
+          <NavigationProperty Name="Food" Relationship="Self.FK_DetailCart_Food" FromRole="InvoiceDetail" ToRole="Food" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_DetailDirect_DirectCart" FromRole="InvoiceDetail" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="PostImage">
+          <Key>
+            <PropertyRef Name="PostImageID" />
+          </Key>
+          <Property Name="PostImageID" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PostID" Type="Int32" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_PostImage_Posts" FromRole="PostImage" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotablePosition" Type="Int32" />
+          <Property Name="NotablePrice" Type="Int32" />
+          <Property Name="NotableQuality" Type="Int32" />
+          <Property Name="NotableServe" Type="Int32" />
+          <Property Name="NotableSapce" Type="Int32" />
+          <Property Name="PostTime" Type="DateTime" Precision="3" />
+          <Property Name="Like" Type="Int32" />
+          <Property Name="View" Type="Int32" />
+          <Property Name="StoreID" Type="Guid" />
+          <Property Name="CustomerID" Type="Guid" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Posts_Customer" FromRole="Posts" ToRole="Customer" />
+          <NavigationProperty Name="PostImages" Relationship="Self.FK_PostImage_Posts" FromRole="Posts" ToRole="PostImage" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Posts_Store" FromRole="Posts" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="Guid" Nullable="false" />
+          <Property Name="StoreName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OpenDoor" Type="Time" Precision="7" />
+          <Property Name="CloserDoor" Type="Time" Precision="7" />
+          <Property Name="ServiceCharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ShippingFee" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Manner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StoreType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreBanner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="Evaluation" Type="Int32" />
+          <Property Name="ConditionShip" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StartDate" Type="Int32" />
+          <Property Name="EndDate" Type="Int32" />
+          <Property Name="CustomerID" Type="Guid" />
+          <Property Name="FileID" Type="Int32" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Category_Store" FromRole="Store" ToRole="Category" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Store_Customer" FromRole="Store" ToRole="Customer" />
+          <NavigationProperty Name="FileData" Relationship="Self.FK_Store_File" FromRole="Store" ToRole="FileData" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_DirectCart_Store" FromRole="Store" ToRole="Invoice" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Store" FromRole="Store" ToRole="Posts" />
+          <NavigationProperty Name="StoreImages" Relationship="Self.FK_StoreImage_Store" FromRole="Store" ToRole="StoreImage" />
+          <NavigationProperty Name="StoreSales" Relationship="Self.FK_StoreSale_Store" FromRole="Store" ToRole="StoreSale" />
+        </EntityType>
+        <EntityType Name="StoreImage">
+          <Key>
+            <PropertyRef Name="StoreImageID" />
+          </Key>
+          <Property Name="StoreImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreID" Type="Guid" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_StoreImage_Store" FromRole="StoreImage" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="StoreSale">
+          <Key>
+            <PropertyRef Name="StoreSaleID" />
+          </Key>
+          <Property Name="StoreSaleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sale" Type="Int32" />
+          <Property Name="StartSale" Type="DateTime" Precision="3" />
+          <Property Name="StopSale" Type="DateTime" Precision="3" />
+          <Property Name="StoreID" Type="Guid" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_StoreSale_Store" FromRole="StoreSale" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="StoreType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeImage" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FulllName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Category_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_File">
+          <End Role="FileData" Type="Self.FileData" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileData">
+              <PropertyRef Name="FileID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DirectCart_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_File">
+          <End Role="FileData" Type="Self.FileData" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileData">
+              <PropertyRef Name="FileID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailCart_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodSize_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="FoodSize" Type="Self.FoodSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="FoodSize">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodType_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="FoodType" Type="Self.FoodType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="FoodType">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailDirect_DirectCart">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DirectCart_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostImage_Posts">
+          <End Role="Posts" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="PostImage" Type="Self.PostImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostImage">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreImage_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="StoreImage" Type="Self.StoreImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StoreImage">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSale_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="StoreSale" Type="Self.StoreSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StoreSale">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoodDeliveryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="FileDatas" EntityType="Self.FileData" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="FoodSizes" EntityType="Self.FoodSize" />
+          <EntitySet Name="FoodTypes" EntityType="Self.FoodType" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetail" />
+          <EntitySet Name="PostImages" EntityType="Self.PostImage" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Stores" EntityType="Self.Store" />
+          <EntitySet Name="StoreImages" EntityType="Self.StoreImage" />
+          <EntitySet Name="StoreSales" EntityType="Self.StoreSale" />
+          <EntitySet Name="StoreTypes" EntityType="Self.StoreType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Category_Store" Association="Self.FK_Category_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Category" Association="Self.FK_Food_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_File" Association="Self.FK_Customer_File">
+            <End Role="FileData" EntitySet="FileDatas" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DirectCart_Customer" Association="Self.FK_DirectCart_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Customer" Association="Self.FK_Posts_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_Customer" Association="Self.FK_Store_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_File" Association="Self.FK_Store_File">
+            <End Role="FileData" EntitySet="FileDatas" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailCart_Food" Association="Self.FK_DetailCart_Food">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodSize_Food" Association="Self.FK_FoodSize_Food">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="FoodSize" EntitySet="FoodSizes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodType_Food" Association="Self.FK_FoodType_Food">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="FoodType" EntitySet="FoodTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailDirect_DirectCart" Association="Self.FK_DetailDirect_DirectCart">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DirectCart_Store" Association="Self.FK_DirectCart_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostImage_Posts" Association="Self.FK_PostImage_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="PostImage" EntitySet="PostImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Store" Association="Self.FK_Posts_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreImage_Store" Association="Self.FK_StoreImage_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreImage" EntitySet="StoreImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSale_Store" Association="Self.FK_StoreSale_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreSale" EntitySet="StoreSales" />
+          </AssociationSet>
+          <FunctionImport Name="CHECK_LOGIN" ReturnType="Collection(FoodDeliveryModel.CHECK_LOGIN_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
+            <Parameter Name="UserType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CHECK_USER_LOGIN" ReturnType="Collection(FoodDeliveryModel.CHECK_USER_LOGIN_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="UserType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FIND_STORE" ReturnType="Collection(FoodDeliveryModel.FIND_STORE_Result)">
+            <Parameter Name="StoreName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="StoreType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_CATEGORY_BY_STOREID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_CATEGORY_BY_STOREID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_FOOD_BY_CATEGORYID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_FOOD_BY_CATEGORYID_Result)">
+            <Parameter Name="CategoryID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_FOOD_BY_STOREID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_FOOD_BY_STOREID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_FOODSIZE_BY_FOODID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_FOODSIZE_BY_FOODID_Result)">
+            <Parameter Name="FoodID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_FOODTYPE_BY_FOODID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_FOODTYPE_BY_FOODID_Result)">
+            <Parameter Name="FoodID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_INVOICE_BY_CUSTOMERID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_INVOICE_BY_CUSTOMERID_Result)">
+            <Parameter Name="CustomerID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_INVOICE_BY_CUSTOMERID_ALL" ReturnType="Collection(FoodDeliveryModel.GET_LIST_INVOICE_BY_CUSTOMERID_ALL_Result)">
+            <Parameter Name="CustomerID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_INVOICE_BY_STOREID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_INVOICE_BY_STOREID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_INVOICEDETAIL_BY_INVOICEID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_INVOICEDETAIL_BY_INVOICEID_Result)">
+            <Parameter Name="InvoiceID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LIST_STORE" ReturnType="Collection(FoodDeliveryModel.GET_LIST_STORE_Result)" />
+          <FunctionImport Name="GET_LIST_STOREIMAGE_BY_STOREID" ReturnType="Collection(FoodDeliveryModel.GET_LIST_STOREIMAGE_BY_STOREID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_CUSTOMER_BY_CUSTOMERID" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_CUSTOMER_BY_CUSTOMERID_Result)">
+            <Parameter Name="CustomerID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_CUSTOMER_BY_USERNAME" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_CUSTOMER_BY_USERNAME_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_FOOD_BY_FOODID" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_FOOD_BY_FOODID_Result)">
+            <Parameter Name="FoodID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_INVOICE_BY_INVOICEID" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_INVOICE_BY_INVOICEID_Result)">
+            <Parameter Name="InvoiceID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+            <Parameter Name="CustomerID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+            <Parameter Name="CustomerID" Mode="In" Type="String" />
+            <Parameter Name="OrderDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_STORE_BY_STOREID" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_STORE_BY_STOREID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_OBJECT_STORESALE_BY_STOREID" ReturnType="Collection(FoodDeliveryModel.GET_OBJECT_STORESALE_BY_STOREID_Result)">
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_SALE_OPEN" ReturnType="Collection(FoodDeliveryModel.GET_SALE_OPEN_Result)" />
+          <FunctionImport Name="INSERT_CUSTOMER_TOSQL">
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Avatar" Mode="In" Type="String" />
+            <Parameter Name="UserType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_INVOICE_TOSQL">
+            <Parameter Name="OrderDate" Mode="In" Type="String" />
+            <Parameter Name="DeliveryDate" Mode="In" Type="String" />
+            <Parameter Name="Sale" Mode="In" Type="Decimal" />
+            <Parameter Name="ServiceChange" Mode="In" Type="Decimal" />
+            <Parameter Name="ShippingFee" Mode="In" Type="Decimal" />
+            <Parameter Name="TotalPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="CustomerName" Mode="In" Type="String" />
+            <Parameter Name="CustomerPhone" Mode="In" Type="String" />
+            <Parameter Name="AddressDelivery" Mode="In" Type="String" />
+            <Parameter Name="CustomerID" Mode="In" Type="String" />
+            <Parameter Name="StoreID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_INVOICEDETAIL_TOSQL">
+            <Parameter Name="FoodID" Mode="In" Type="String" />
+            <Parameter Name="NumberFood" Mode="In" Type="Int32" />
+            <Parameter Name="Size" Mode="In" Type="String" />
+            <Parameter Name="PriceSize" Mode="In" Type="Int64" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="PriceType" Mode="In" Type="Int64" />
+            <Parameter Name="InvoiceID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FoodDeliveryModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FoodDeliveryModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UPDATE_CUSTOMER_TOSQL">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="UserType" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Avatar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_STATUS_INVOICE">
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="InvoiceID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="CHECK_LOGIN_Result">
+          <Property Type="Guid" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Avatar" Nullable="true" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CHECK_USER_LOGIN_Result">
+          <Property Type="Guid" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Avatar" Nullable="true" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FIND_STORE_Result">
+          <Property Type="Guid" Name="StoreID" Nullable="false" />
+          <Property Type="String" Name="StoreName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="Time" Name="OpenDoor" Nullable="true" />
+          <Property Type="Time" Name="CloserDoor" Nullable="true" />
+          <Property Type="Decimal" Name="ServiceCharge" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Manner" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="StoreType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="StoreBanner" Nullable="true" />
+          <Property Type="Double" Name="Rating" Nullable="true" />
+          <Property Type="Int32" Name="Evaluation" Nullable="true" />
+          <Property Type="Decimal" Name="ConditionShip" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="StartDate" Nullable="true" />
+          <Property Type="Int32" Name="EndDate" Nullable="true" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_CATEGORY_BY_STOREID_Result">
+          <Property Type="Guid" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_FOOD_BY_CATEGORYID_Result">
+          <Property Type="Guid" Name="FoodID" Nullable="false" />
+          <Property Type="String" Name="FoodName" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="FoodImage" Nullable="true" />
+          <Property Type="Guid" Name="CategoryID" Nullable="true" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_FOOD_BY_STOREID_Result">
+          <Property Type="Guid" Name="FoodID" Nullable="false" />
+          <Property Type="String" Name="FoodName" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="FoodImage" Nullable="true" />
+          <Property Type="Guid" Name="CategoryID" Nullable="true" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_FOODSIZE_BY_FOODID_Result">
+          <Property Type="Int32" Name="FoodSizeID" Nullable="false" />
+          <Property Type="String" Name="SizeName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="PriceSize" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Guid" Name="FoodID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_FOODTYPE_BY_FOODID_Result">
+          <Property Type="Int32" Name="FoodTypeID" Nullable="false" />
+          <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="PriceType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Guid" Name="FoodID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_INVOICE_BY_CUSTOMERID_Result">
+          <Property Type="Guid" Name="InvoiceID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddressDelivery" Nullable="true" MaxLength="200" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Decimal" Name="Sale" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ServiceChange" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_INVOICE_BY_CUSTOMERID_ALL_Result">
+          <Property Type="Guid" Name="InvoiceID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AddressDelivery" Nullable="true" MaxLength="200" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerPhone" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Sale" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ServiceChange" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="String" Name="StoreName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_INVOICE_BY_STOREID_Result">
+          <Property Type="Guid" Name="InvoiceID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddressDelivery" Nullable="true" MaxLength="200" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Decimal" Name="Sale" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ServiceChange" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_INVOICEDETAIL_BY_INVOICEID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="FoodID" Nullable="true" />
+          <Property Type="Int32" Name="NumberFood" Nullable="true" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="PriceSize" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="PriceType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Guid" Name="InvoiceID" Nullable="true" />
+          <Property Type="String" Name="FoodImage" Nullable="true" />
+          <Property Type="String" Name="FoodName" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_STORE_Result">
+          <Property Type="Guid" Name="StoreID" Nullable="false" />
+          <Property Type="String" Name="StoreName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="Time" Name="OpenDoor" Nullable="true" />
+          <Property Type="Time" Name="CloserDoor" Nullable="true" />
+          <Property Type="Decimal" Name="ServiceCharge" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Manner" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="StoreType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="StoreBanner" Nullable="true" />
+          <Property Type="Double" Name="Rating" Nullable="true" />
+          <Property Type="Int32" Name="Evaluation" Nullable="true" />
+          <Property Type="Decimal" Name="ConditionShip" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="StartDate" Nullable="true" />
+          <Property Type="Int32" Name="EndDate" Nullable="true" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_LIST_STOREIMAGE_BY_STOREID_Result">
+          <Property Type="Int32" Name="StoreImageID" Nullable="false" />
+          <Property Type="String" Name="URL" Nullable="true" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_CUSTOMER_BY_CUSTOMERID_Result">
+          <Property Type="Guid" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Avatar" Nullable="true" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_CUSTOMER_BY_USERNAME_Result">
+          <Property Type="Guid" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Avatar" Nullable="true" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_FOOD_BY_FOODID_Result">
+          <Property Type="Guid" Name="FoodID" Nullable="false" />
+          <Property Type="String" Name="FoodName" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="FoodImage" Nullable="true" />
+          <Property Type="Guid" Name="CategoryID" Nullable="true" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_INVOICE_BY_INVOICEID_Result">
+          <Property Type="Guid" Name="InvoiceID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddressDelivery" Nullable="true" MaxLength="200" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Decimal" Name="Sale" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ServiceChange" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_Result">
+          <Property Type="Guid" Name="InvoiceID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddressDelivery" Nullable="true" MaxLength="200" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Decimal" Name="Sale" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ServiceChange" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE_Result">
+          <Property Type="Guid" Name="InvoiceID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddressDelivery" Nullable="true" MaxLength="200" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+          <Property Type="Decimal" Name="Sale" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ServiceChange" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_STORE_BY_STOREID_Result">
+          <Property Type="Guid" Name="StoreID" Nullable="false" />
+          <Property Type="String" Name="StoreName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="Time" Name="OpenDoor" Nullable="true" />
+          <Property Type="Time" Name="CloserDoor" Nullable="true" />
+          <Property Type="Decimal" Name="ServiceCharge" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ShippingFee" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Manner" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="StoreType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="StoreBanner" Nullable="true" />
+          <Property Type="Double" Name="Rating" Nullable="true" />
+          <Property Type="Int32" Name="Evaluation" Nullable="true" />
+          <Property Type="Decimal" Name="ConditionShip" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="StartDate" Nullable="true" />
+          <Property Type="Int32" Name="EndDate" Nullable="true" />
+          <Property Type="Guid" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="FileID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_OBJECT_STORESALE_BY_STOREID_Result">
+          <Property Type="Int32" Name="StoreSaleID" Nullable="false" />
+          <Property Type="Int32" Name="Sale" Nullable="true" />
+          <Property Type="DateTime" Name="StartSale" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="StopSale" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_SALE_OPEN_Result">
+          <Property Type="Int32" Name="StoreSaleID" Nullable="false" />
+          <Property Type="Int32" Name="Sale" Nullable="true" />
+          <Property Type="DateTime" Name="StartSale" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="StopSale" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="StoreID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoodDeliveryModelStoreContainer" CdmEntityContainer="FoodDeliveryEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDatas">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.FileData">
+              <MappingFragment StoreEntitySet="FileData">
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileMimeType" ColumnName="FileMimeType" />
+                <ScalarProperty Name="FileThumbnail" ColumnName="FileThumbnail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodSizes">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.FoodSize">
+              <MappingFragment StoreEntitySet="FoodSize">
+                <ScalarProperty Name="FoodSizeID" ColumnName="FoodSizeID" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodTypes">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.FoodType">
+              <MappingFragment StoreEntitySet="FoodType">
+                <ScalarProperty Name="FoodTypeID" ColumnName="FoodTypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceDetails">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.InvoiceDetail">
+              <MappingFragment StoreEntitySet="InvoiceDetail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="NumberFood" ColumnName="NumberFood" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostImages">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.PostImage">
+              <MappingFragment StoreEntitySet="PostImage">
+                <ScalarProperty Name="PostImageID" ColumnName="PostImageID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="NotablePosition" ColumnName="NotablePosition" />
+                <ScalarProperty Name="NotablePrice" ColumnName="NotablePrice" />
+                <ScalarProperty Name="NotableQuality" ColumnName="NotableQuality" />
+                <ScalarProperty Name="NotableServe" ColumnName="NotableServe" />
+                <ScalarProperty Name="NotableSapce" ColumnName="NotableSapce" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="Like" ColumnName="Like" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+                <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+                <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="Manner" ColumnName="Manner" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+                <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+                <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreImages">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.StoreImage">
+              <MappingFragment StoreEntitySet="StoreImage">
+                <ScalarProperty Name="StoreImageID" ColumnName="StoreImageID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreSales">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.StoreSale">
+              <MappingFragment StoreEntitySet="StoreSale">
+                <ScalarProperty Name="StoreSaleID" ColumnName="StoreSaleID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="StartSale" ColumnName="StartSale" />
+                <ScalarProperty Name="StopSale" ColumnName="StopSale" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreTypes">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.StoreType">
+              <MappingFragment StoreEntitySet="StoreType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeImage" ColumnName="TypeImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FoodDeliveryModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FulllName" ColumnName="FulllName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CHECK_LOGIN" FunctionName="FoodDeliveryModel.Store.CHECK_LOGIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.CHECK_LOGIN_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CHECK_USER_LOGIN" FunctionName="FoodDeliveryModel.Store.CHECK_USER_LOGIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.CHECK_USER_LOGIN_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FIND_STORE" FunctionName="FoodDeliveryModel.Store.FIND_STORE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.FIND_STORE_Result">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+                <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+                <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="Manner" ColumnName="Manner" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+                <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+                <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_CATEGORY_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_CATEGORY_BY_STOREID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_CATEGORY_BY_STOREID_Result">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_FOOD_BY_CATEGORYID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOOD_BY_CATEGORYID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOOD_BY_CATEGORYID_Result">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_FOOD_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOOD_BY_STOREID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOOD_BY_STOREID_Result">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_FOODSIZE_BY_FOODID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOODSIZE_BY_FOODID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOODSIZE_BY_FOODID_Result">
+                <ScalarProperty Name="FoodSizeID" ColumnName="FoodSizeID" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_FOODTYPE_BY_FOODID" FunctionName="FoodDeliveryModel.Store.GET_LIST_FOODTYPE_BY_FOODID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_FOODTYPE_BY_FOODID_Result">
+                <ScalarProperty Name="FoodTypeID" ColumnName="FoodTypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_INVOICE_BY_CUSTOMERID" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICE_BY_CUSTOMERID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICE_BY_CUSTOMERID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_INVOICE_BY_CUSTOMERID_ALL" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICE_BY_CUSTOMERID_ALL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICE_BY_CUSTOMERID_ALL_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_INVOICE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICE_BY_STOREID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICE_BY_STOREID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_INVOICEDETAIL_BY_INVOICEID" FunctionName="FoodDeliveryModel.Store.GET_LIST_INVOICEDETAIL_BY_INVOICEID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_INVOICEDETAIL_BY_INVOICEID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="NumberFood" ColumnName="NumberFood" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="PriceSize" ColumnName="PriceSize" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PriceType" ColumnName="PriceType" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_STORE" FunctionName="FoodDeliveryModel.Store.GET_LIST_STORE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_STORE_Result">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+                <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+                <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="Manner" ColumnName="Manner" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+                <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+                <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LIST_STOREIMAGE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_LIST_STOREIMAGE_BY_STOREID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_LIST_STOREIMAGE_BY_STOREID_Result">
+                <ScalarProperty Name="StoreImageID" ColumnName="StoreImageID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_CUSTOMER_BY_CUSTOMERID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_CUSTOMER_BY_CUSTOMERID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_CUSTOMER_BY_CUSTOMERID_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_CUSTOMER_BY_USERNAME" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_CUSTOMER_BY_USERNAME">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_CUSTOMER_BY_USERNAME_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_FOOD_BY_FOODID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_FOOD_BY_FOODID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_FOOD_BY_FOODID_Result">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_INVOICE_BY_INVOICEID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_INVOICE_BY_INVOICEID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_INVOICE_BY_INVOICEID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="AddressDelivery" ColumnName="AddressDelivery" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="ServiceChange" ColumnName="ServiceChange" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_STORE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_STORE_BY_STOREID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_STORE_BY_STOREID_Result">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OpenDoor" ColumnName="OpenDoor" />
+                <ScalarProperty Name="CloserDoor" ColumnName="CloserDoor" />
+                <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="Manner" ColumnName="Manner" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="StoreType" ColumnName="StoreType" />
+                <ScalarProperty Name="StoreBanner" ColumnName="StoreBanner" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+                <ScalarProperty Name="ConditionShip" ColumnName="ConditionShip" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_OBJECT_STORESALE_BY_STOREID" FunctionName="FoodDeliveryModel.Store.GET_OBJECT_STORESALE_BY_STOREID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_OBJECT_STORESALE_BY_STOREID_Result">
+                <ScalarProperty Name="StoreSaleID" ColumnName="StoreSaleID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="StartSale" ColumnName="StartSale" />
+                <ScalarProperty Name="StopSale" ColumnName="StopSale" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_SALE_OPEN" FunctionName="FoodDeliveryModel.Store.GET_SALE_OPEN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.GET_SALE_OPEN_Result">
+                <ScalarProperty Name="StoreSaleID" ColumnName="StoreSaleID" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="StartSale" ColumnName="StartSale" />
+                <ScalarProperty Name="StopSale" ColumnName="StopSale" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="INSERT_CUSTOMER_TOSQL" FunctionName="FoodDeliveryModel.Store.INSERT_CUSTOMER_TOSQL" />
+          <FunctionImportMapping FunctionImportName="INSERT_INVOICE_TOSQL" FunctionName="FoodDeliveryModel.Store.INSERT_INVOICE_TOSQL" />
+          <FunctionImportMapping FunctionImportName="INSERT_INVOICEDETAIL_TOSQL" FunctionName="FoodDeliveryModel.Store.INSERT_INVOICEDETAIL_TOSQL" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FoodDeliveryModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FoodDeliveryModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FoodDeliveryModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FoodDeliveryModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FoodDeliveryModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDeliveryModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FoodDeliveryModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FoodDeliveryModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UPDATE_CUSTOMER_TOSQL" FunctionName="FoodDeliveryModel.Store.UPDATE_CUSTOMER_TOSQL" />
+          <FunctionImportMapping FunctionImportName="UPDATE_STATUS_INVOICE" FunctionName="FoodDeliveryModel.Store.UPDATE_STATUS_INVOICE" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

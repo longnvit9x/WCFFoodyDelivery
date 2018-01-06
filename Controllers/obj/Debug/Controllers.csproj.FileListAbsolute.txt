@@ -1,0 +1,11 @@
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\Controllers.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\Controllers.pdb
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\EntityFramework.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\EntityFramework.SqlServer.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\Models.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\Models.pdb
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\EntityFramework.xml
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\bin\Debug\EntityFramework.SqlServer.xml
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\obj\Debug\Controllers.csprojResolveAssemblyReference.cache
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\obj\Debug\Controllers.dll
+E:\CV Ominext\AppDemo\WCFFoodDelivery\Controllers\obj\Debug\Controllers.pdb

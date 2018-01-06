@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodDeliveryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="StoreID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mobile" Type="text" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Avatar" Type="nvarchar(max)" />
+    <Property Name="LocationX" Type="float" />
+    <Property Name="LocationY" Type="float" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="FoodID" />
+    </Key>
+    <Property Name="FoodID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FoodImage" Type="nvarchar(max)" />
+    <Property Name="CategoryID" Type="uniqueidentifier" />
+    <Property Name="StoreID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="FoodSize">
+    <Key>
+      <PropertyRef Name="FoodSizeID" />
+    </Key>
+    <Property Name="FoodSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SizeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriceSize" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FoodID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="FoodType">
+    <Key>
+      <PropertyRef Name="FoodTypeID" />
+    </Key>
+    <Property Name="FoodTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriceType" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FoodID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="DeliveryDate" Type="datetime" />
+    <Property Name="CustomerID" Type="uniqueidentifier" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressDelivery" Type="nvarchar" MaxLength="200" />
+    <Property Name="StoreID" Type="uniqueidentifier" />
+    <Property Name="Sale" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ShippingFee" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ServiceChange" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodID" Type="uniqueidentifier" />
+    <Property Name="NumberFood" Type="int" />
+    <Property Name="Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriceSize" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriceType" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="InvoiceID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="StoreID" />
+    </Key>
+    <Property Name="StoreID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StoreName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="OpenDoor" Type="time" Precision="7" />
+    <Property Name="CloserDoor" Type="time" Precision="7" />
+    <Property Name="ServiceCharge" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ShippingFee" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Manner" Type="nvarchar" MaxLength="50" />
+    <Property Name="Website" Type="nvarchar" MaxLength="100" />
+    <Property Name="LocationX" Type="float" />
+    <Property Name="LocationY" Type="float" />
+    <Property Name="StoreType" Type="nvarchar" MaxLength="50" />
+    <Property Name="StoreBanner" Type="nvarchar(max)" />
+    <Property Name="Rating" Type="float" />
+    <Property Name="Evaluation" Type="int" />
+    <Property Name="ConditionShip" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="StartDate" Type="int" />
+    <Property Name="EndDate" Type="int" />
+  </EntityType>
+  <EntityType Name="StoreImage">
+    <Key>
+      <PropertyRef Name="StoreImageID" />
+    </Key>
+    <Property Name="StoreImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="URL" Type="nvarchar(max)" />
+    <Property Name="StoreID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="StoreSale">
+    <Key>
+      <PropertyRef Name="StoreSaleID" />
+    </Key>
+    <Property Name="StoreSaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sale" Type="int" />
+    <Property Name="StartSale" Type="datetime" />
+    <Property Name="StopSale" Type="datetime" />
+    <Property Name="StoreID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="StoreType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeImage" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Category_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetailCart_Food">
+    <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="FoodID" />
+      </Principal>
+      <Dependent Role="InvoiceDetail">
+        <PropertyRef Name="FoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetailDirect_DirectCart">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="InvoiceDetail">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DirectCart_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DirectCart_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Food" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodSize_Food">
+    <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+    <End Role="FoodSize" Type="Self.FoodSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="FoodID" />
+      </Principal>
+      <Dependent Role="FoodSize">
+        <PropertyRef Name="FoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodType_Food">
+    <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+    <End Role="FoodType" Type="Self.FoodType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="FoodID" />
+      </Principal>
+      <Dependent Role="FoodType">
+        <PropertyRef Name="FoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreImage_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="StoreImage" Type="Self.StoreImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="StoreImage">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreSale_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="StoreSale" Type="Self.StoreSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="StoreSale">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CHECK_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="CHECK_USER_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FIND_STORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="StoreType" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GET_LIST_CATEGORY_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_FOOD_BY_CATEGORYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_FOOD_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_FOODSIZE_BY_FOODID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_FOODTYPE_BY_FOODID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_INVOICE_BY_CUSTOMERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_INVOICE_BY_CUSTOMERID_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_INVOICE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_INVOICEDETAIL_BY_INVOICEID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_LIST_STORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_LIST_STOREIMAGE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_CUSTOMER_BY_CUSTOMERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_CUSTOMER_BY_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_FOOD_BY_FOODID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_INVOICE_BY_INVOICEID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_INVOICE_BY_STOREID_AND_CUSTOMERID_AND_ORDERDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="OrderDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_STORE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_OBJECT_STORESALE_BY_STOREID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GET_SALE_OPEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="INSERT_CUSTOMER_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="text" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Avatar" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LocationX" Type="float" Mode="In" />
+    <Parameter Name="LocationY" Type="float" Mode="In" />
+    <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="INSERT_INVOICE_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="DeliveryDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sale" Type="decimal" Mode="In" />
+    <Parameter Name="ServiceChange" Type="decimal" Mode="In" />
+    <Parameter Name="ShippingFee" Type="decimal" Mode="In" />
+    <Parameter Name="TotalPrice" Type="decimal" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerPhone" Type="nvarchar" Mode="In" />
+    <Parameter Name="AddressDelivery" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StoreID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="INSERT_INVOICEDETAIL_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FoodID" Type="nvarchar" Mode="In" />
+    <Parameter Name="NumberFood" Type="int" Mode="In" />
+    <Parameter Name="Size" Type="nvarchar" Mode="In" />
+    <Parameter Name="PriceSize" Type="bigint" Mode="In" />
+    <Parameter Name="Type" Type="nvarchar" Mode="In" />
+    <Parameter Name="PriceType" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UPDATE_CUSTOMER_TOSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="text" Mode="In" />
+    <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Avatar" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LocationX" Type="float" Mode="In" />
+    <Parameter Name="LocationY" Type="float" Mode="In" />
+  </Function>
+  <Function Name="UPDATE_STATUS_INVOICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="InvoiceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="FoodDeliveryModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodSize" EntityType="Self.FoodSize" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodType" EntityType="Self.FoodType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceDetail" EntityType="Self.InvoiceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StoreImage" EntityType="Self.StoreImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StoreSale" EntityType="Self.StoreSale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StoreType" EntityType="Self.StoreType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Category_Store" Association="Self.FK_Category_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="Category" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetailCart_Food" Association="Self.FK_DetailCart_Food">
+      <End Role="Food" EntitySet="Food" />
+      <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetailDirect_DirectCart" Association="Self.FK_DetailDirect_DirectCart">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DirectCart_Customer" Association="Self.FK_DirectCart_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DirectCart_Store" Association="Self.FK_DirectCart_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_Category" Association="Self.FK_Food_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Food" EntitySet="Food" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodSize_Food" Association="Self.FK_FoodSize_Food">
+      <End Role="Food" EntitySet="Food" />
+      <End Role="FoodSize" EntitySet="FoodSize" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodType_Food" Association="Self.FK_FoodType_Food">
+      <End Role="Food" EntitySet="Food" />
+      <End Role="FoodType" EntitySet="FoodType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreImage_Store" Association="Self.FK_StoreImage_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="StoreImage" EntitySet="StoreImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreSale_Store" Association="Self.FK_StoreSale_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="StoreSale" EntitySet="StoreSale" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
